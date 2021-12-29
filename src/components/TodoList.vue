@@ -43,7 +43,6 @@ export default {
 }
 .items {
   width: 100%;
-  overflow: scroll;
 }
 
 
