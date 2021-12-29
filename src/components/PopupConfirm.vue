@@ -67,6 +67,7 @@ export default {
   align-items: center;
   justify-content: center;
   z-index: 1;
+  font-size: 18px;
 }
 
 .popup__form{
@@ -77,10 +78,6 @@ export default {
   background-color: white;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
   line-height: 17px;
   padding: 14px 36px 36px 36px;
   box-sizing: border-box;
@@ -100,7 +97,6 @@ export default {
   background-image: url('../assets/icons/close.png');
   background-size: contain;
   margin-left: auto;
- 
 }
 
 .popup__buttons {
@@ -117,12 +113,31 @@ export default {
   background-color: rgba(0, 0, 0, 0.63);
   border-radius: 10px;
   color: rgb(255, 255, 255);
-
   margin-top: 40px;
   padding: 5px;
   font-size: 18px;
   z-index: 1;
   
+}
+
+@media (max-width:560px){
+  .popup{
+    padding: 0 20px;
+    font-size: 14px;
+  }
+  .popup__close{
+    width: 16px;
+    height: 16px;
+  }
+  .popup__button{
+    width: 35%;
+    font-size: 14px;
+  }
+}
+@media (max-width:425px){
+  .popup__form{
+    padding: 10px 20px 20px 20px;
+  }
 }
 
 </style>

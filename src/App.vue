@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
 
+import { mapActions, mapState } from 'vuex'
 import Header from './components/Header.vue'
 import Loader from './components/Loader.vue'
 import PopupConfirm from './components/PopupConfirm.vue'

@@ -1,24 +1,34 @@
-# test
+# Проект: *Заметки*
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Описание проекта
+Приложение состоит из 2х страниц.
+На главной странице отображается список всех заметок. Для каждой заметки отображается заголовок и Todo, сокращенный до нескольких пунктов, без возможности отмечать.
+Страница изменения заметки позволяет отрелактировать определенную заметку, отметить пункты как выполненные, а после сохранить изменения. 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+___
+### Для создания проекта применены:
 
-### Lints and fixes files
-```
-npm run lint
-```
+- HTML
+- CSS
+- JavaScript
+- Vue
+- Git
+- Webpack
+- БЭМ 
+___
+### Запуск Webpack
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Webpack можно запустить вручную из командной строки:          
+-- `npm run build` - финальная сборка         
+-- `npm run serve` - запуск локального сервера       
+___
+### Посмотреть:
+
+ [Ссылка на сайт](https://todotesttask.azurewebsites.net/) :feet:      
+
+ 
+### Можно лучше:
+:radio_button: Сделать отображение всего количества заметок при нажатии на заметку
+:radio_button: Отмечать на главной странице заметку(todo), которая выполнена
+

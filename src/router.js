@@ -1,7 +1,5 @@
 import VueRouter from 'vue-router'
-
 import TodoList from './components/TodoList.vue'
-// import Header from './components/TodoList.vue'
 import Create from './components/Create.vue'
 
 export const router = new VueRouter({

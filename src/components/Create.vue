@@ -179,18 +179,11 @@ export default {
   margin: 0 0 0 37px;
 }
 
-@media (max-width:768px){
-  .create__input_type_title{
-    margin: 0 0 0 0px;
-  }
-}
-
 .create__input_type_task{
   height: auto;
   outline: none;
   overflow: auto;
 }
-
 
 .create__form {
   display: flex;
@@ -205,13 +198,6 @@ export default {
   margin-right: 59px;
 }
 
-@media (max-width:768px){
-  .create__change{
-    margin-right: 30px;
-
-  }
-}
-
 .create__button_type_add{
   background-image: url('../assets/icons/addButtonBlack.png');
   margin-right: 15px;
@@ -223,7 +209,6 @@ export default {
   margin-left: auto;
   background-image: url('../assets/icons/delete.png');
 }
-
 
 .create__button.completed {
   background-image: url('../assets/icons/completed.png');
@@ -248,7 +233,6 @@ export default {
 .disabled {
   opacity: 0.5;
 }
-
 
 .create__tasks {
   display: flex;
@@ -286,5 +270,14 @@ export default {
   background-repeat: no-repeat;
   background-size: 20px 20px;
   transition: opacity 0.3s ease-in-out;
+}
+
+@media (max-width:768px){
+  .create__input_type_title{
+    margin: 0 0 0 0px;
+  }
+  .create__change{
+    margin-right: 30px;
+  }
 }
 </style>

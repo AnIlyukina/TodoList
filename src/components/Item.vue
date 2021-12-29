@@ -89,7 +89,6 @@ export default {
 .item__tasks {
   font-size: 20px;
   flex: 1 0 auto;
-  /* max-width: calc(100% - 324px); */
   width: calc(100% - 324px); 
   padding: 15px 5px 15px 0px;   
 }
@@ -98,7 +97,6 @@ export default {
   font-size: 20px;
   flex: 1 0 270px;
   max-width: 270px;
-  /* width: 100%; */
   display: flex;
   align-items: center;
   text-align: left;
@@ -138,7 +136,6 @@ export default {
 }
 
 .item__controls {
-  /* margin-left: auto; */
   padding: 15px;
   flex: 0 0 54px;
 }
@@ -178,7 +175,6 @@ export default {
     font-size: 16px;
   }
   .item__block {
-    /* flex: 1 0 100%; */
     width: 100%;
   }
 }

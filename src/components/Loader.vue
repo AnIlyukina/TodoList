@@ -37,11 +37,10 @@ export default {
   z-index: 4;
   width: 100px;
   height: 100px;
-  background-image: url('../assets/loader.png');
+  background-image: url('../assets/icons/loader.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* transition: transform 0.3s ease-in-out; */
   animation: anim 3s linear infinite;
 }
 

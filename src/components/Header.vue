@@ -47,12 +47,6 @@ export default {
   justify-content: space-between;
 }
 
-@media (max-width:425px){
-  .header{
-    font-size: 15px;
-  }
-}
-
 .header__logo{
   width: 48px;
   height: 48px;
@@ -78,5 +72,11 @@ export default {
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-image: url('../assets/icons/addButtonWhite.png');
+}
+
+@media (max-width:425px){
+  .header{
+    font-size: 15px;
+  }
 }
 </style>

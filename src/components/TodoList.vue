@@ -39,7 +39,6 @@ export default {
   width: 100%;
   display: flex; 
   flex-direction: column;
-  
   padding: 20px 0 ;  
 }
 .items {
