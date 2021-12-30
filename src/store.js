@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import { updateTodo, createTodo, deleteTodo, getTodos } from './fetcher'
+
 export const store = new Vuex.Store(
   {
     state: {
@@ -34,10 +36,68 @@ export const store = new Vuex.Store(
       setLoading: (state, payload) => {
         state.loading = payload
       },
+      createItem: (state, payload) => {
+        state.items.push(payload)
+      },
+      updateItem: (state, payload) => {
+        state.items.splice(state.items.findIndex(i => i.id === payload.id), 1, payload)
+      }
     },
     actions: {
-      deleteItem: (context, payload) => {
-        context.commit('deleteItem', payload)
+      deleteItem: async ({ state, commit, dispatch }, payload) => {
+        dispatch('setLoading', true)
+        try {
+          const response = await deleteTodo(state.items[payload].id)
+          if (response.status === 200) {
+            commit('deleteItem', payload)
+          }
+          else {
+            console.log('error')
+          }
+        }
+        catch(e) {
+          console.log(e)
+        }
+        finally {
+          dispatch('setLoading', false)
+        }
+      },
+      createItem: async({ commit, dispatch }, payload) => {
+        dispatch('setLoading', true)
+        try{
+          const response = await createTodo(payload)
+          if (response.status === 200){
+            const data = await response.json()
+            commit('createItem', data)
+          }
+          else {
+            console.log('error')
+          }
+        }
+        catch(e) {
+          console.log(e)
+        }
+        finally {
+          dispatch('setLoading', false)
+        }
+      },
+      updateItem: async ({ commit, dispatch }, payload) => {
+        dispatch('setLoading', true)
+        try {
+          const response = await updateTodo(payload)
+          if (response.status === 200) {
+            commit('updateItem', payload)
+          }
+          else {
+            console.log('error')
+          }
+        }
+        catch(e) {
+          console.log(e)
+        }
+        finally {
+          dispatch('setLoading', false)
+        }
       },
       setPopupVisible: (context, payload) => [
         context.commit('setPopupVisible', payload)
@@ -51,8 +111,24 @@ export const store = new Vuex.Store(
       setPopupType: (context, payload) => {
         context.commit('setPopupType', payload)
       },
-      setItems: (context, payload) => {
-        context.commit('setItems', payload)
+      setItems: async ({ commit, dispatch }) => {
+        dispatch('setLoading', true)
+        try {
+          const response = await getTodos()
+          if (response.status === 200) {
+            const data = await response.json()
+            commit('setItems', data)
+          }
+          else {
+            console.log('error')
+          }
+        }
+        catch(e) {
+          console.log(e)
+        }
+        finally {
+          dispatch('setLoading', false)
+        }
       },
       setLoading: (context, payload) => {
         context.commit('setLoading', payload)

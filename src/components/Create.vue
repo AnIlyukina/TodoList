@@ -20,7 +20,6 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 import { required } from 'vuelidate/lib/validators'
-import { createTodo, getTodos, updateTodo } from '../fetcher'
 
 export default {
   name: 'Create',
@@ -76,7 +75,9 @@ export default {
       'setIsBackIcon',
       'setPopupType',
       'setLoading',
-      'setItems'
+      'setItems',
+      'createItem',
+      'updateItem'
     ]),
     onAddTaskClick() {
       this.item.tasks.push({title: '', completed: false})
@@ -84,13 +85,14 @@ export default {
     async onSaveClick() {
       if (!this.onEditScreen) {
         if (this.modelValid) {
-          await createTodo(this.item, this.setLoading)
+          this.createItem(this.item)
           this.$router.push('/')
         }
       }
       else {
         if (this.modelValid) {
-          await updateTodo(this.item, this.setLoading)
+          console.log(this.item)
+          this.updateItem(this.item)
           this.$router.push('/')
         }
       }
@@ -119,10 +121,10 @@ export default {
     },
     async save(item) {
       if (this.onEditScreen) {
-        await updateTodo(item, this.setLoading)
+        this.updateItem(item)
       }
       else {
-        await createTodo(item, this.setLoading)
+        this.createItem(item)
       }
       this.$router.push('/')
     },
@@ -146,7 +148,7 @@ export default {
   async mounted() {
     this.setIsBackIcon(true)
     if (this.$route.path.includes('/edit')) {
-      this.setItems(await getTodos(this.setLoading))
+      this.setItems()
       this.item = this.items[this.$route.params.id]
     }
   },

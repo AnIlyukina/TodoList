@@ -9,7 +9,6 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Item from './Item.vue'
-import { getTodos } from '../fetcher'
 
 export default {
   name: 'TodoList',
@@ -28,7 +27,7 @@ export default {
   },
   async mounted() {
     this.setIsBackIcon(false)
-    this.setItems(await getTodos(this.setLoading))
+    this.setItems()
   },
 }
 </script>
@@ -40,6 +39,7 @@ export default {
   display: flex; 
   flex-direction: column;
   padding: 20px 0 ;  
+  overflow: scroll;
 }
 .items {
   width: 100%;

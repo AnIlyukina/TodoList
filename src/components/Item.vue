@@ -19,7 +19,6 @@
 import { mapActions } from 'vuex'
 import Complete from '../assets/icons/complete.png'
 import NotComplete from '../assets/icons/notcomplete.png'
-import { deleteTodo } from '../fetcher'
 
 export default {
   name: 'Item',
@@ -50,7 +49,7 @@ export default {
     },
 
     async delete() {
-      await deleteTodo(this.item.id, this.setLoading)
+      // await deleteTodo(this.item.id, this.setLoading)
       this.deleteItem(this.index)
     },
 
