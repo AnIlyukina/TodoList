@@ -1,9 +1,15 @@
 <template>
   <div class="app">
     <Header />
-    <PopupConfirm v-if="popupVisible"/>
-    <Loader v-if="loading"/>
-    <Error v-if="errorMessage" :message="errorMessage"/>
+    <transition name="fade" >
+      <PopupConfirm v-if="popupVisible"/>
+    </transition>
+    <transition name="fade" >
+      <Loader v-if="loading"/>
+    </transition>
+    <transition name="fade" >
+      <Error v-if="errorMessage" :message="errorMessage"/>
+    </transition>
     <router-view></router-view>
   </div>
 </template>
@@ -65,5 +71,12 @@ body, * {
   align-items: center;
   padding: 20px 10px 20px 10px;
   min-width: 320px;
+}
+
+.fade-enter,.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
 }
 </style>

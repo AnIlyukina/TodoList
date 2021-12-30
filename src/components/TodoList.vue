@@ -1,7 +1,9 @@
 <template>
   <div class="todolist">
     <div class="items">
-      <Item v-for="(item, index) in items" :index="index" :key="index" :item="item"/>
+      <transition-group name="fade">
+        <Item v-for="(item, index) in items" :index="index" :key="index" :item="item"/>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -38,8 +40,8 @@ export default {
   width: 100%;
   display: flex; 
   flex-direction: column;
-  padding: 20px 0 ;  
-  overflow: scroll;
+  padding: 20px 5px;  
+  overflow-y: auto;
 }
 .items {
   width: 100%;
