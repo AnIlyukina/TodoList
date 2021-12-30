@@ -148,7 +148,7 @@ export default {
   async mounted() {
     this.setIsBackIcon(true)
     if (this.$route.path.includes('/edit')) {
-      this.setItems()
+      await this.setItems()
       this.item = this.items[this.$route.params.id]
     }
   },

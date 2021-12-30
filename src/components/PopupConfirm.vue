@@ -58,7 +58,7 @@ export default {
 
 .popup{
   display: flex;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0px;
   left:0;
@@ -75,7 +75,7 @@ export default {
   flex-direction: column;
   max-width: 430px;
   width: 100%;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   line-height: 17px;

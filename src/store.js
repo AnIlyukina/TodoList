@@ -13,6 +13,7 @@ export const store = new Vuex.Store(
       popupType: {},
       items: [],
       loading: false,
+      errorMessage: '',
     },
     mutations: {
       deleteItem: (state, payload) => {
@@ -36,6 +37,9 @@ export const store = new Vuex.Store(
       setLoading: (state, payload) => {
         state.loading = payload
       },
+      setErrorMessage: (state, payload) => {
+        state.errorMessage = payload
+      },
       createItem: (state, payload) => {
         state.items.push(payload)
       },
@@ -48,15 +52,16 @@ export const store = new Vuex.Store(
         dispatch('setLoading', true)
         try {
           const response = await deleteTodo(state.items[payload].id)
+          console.log(response)
           if (response.status === 200) {
             commit('deleteItem', payload)
           }
           else {
-            console.log('error')
+            dispatch('setErrorMessage', await response.text())
           }
         }
         catch(e) {
-          console.log(e)
+          dispatch('setErrorMessage', e.message)
         }
         finally {
           dispatch('setLoading', false)
@@ -71,11 +76,11 @@ export const store = new Vuex.Store(
             commit('createItem', data)
           }
           else {
-            console.log('error')
+            dispatch('setErrorMessage', await response.text())
           }
         }
         catch(e) {
-          console.log(e)
+          dispatch('setErrorMessage', e.message)
         }
         finally {
           dispatch('setLoading', false)
@@ -89,11 +94,11 @@ export const store = new Vuex.Store(
             commit('updateItem', payload)
           }
           else {
-            console.log('error')
+            dispatch('setErrorMessage', await response.text())
           }
         }
         catch(e) {
-          console.log(e)
+          dispatch('setErrorMessage', e.message)
         }
         finally {
           dispatch('setLoading', false)
@@ -120,11 +125,11 @@ export const store = new Vuex.Store(
             commit('setItems', data)
           }
           else {
-            console.log('error')
+            dispatch('setErrorMessage', await response.text())
           }
         }
         catch(e) {
-          console.log(e)
+          dispatch('setErrorMessage', e.message)
         }
         finally {
           dispatch('setLoading', false)
@@ -132,6 +137,9 @@ export const store = new Vuex.Store(
       },
       setLoading: (context, payload) => {
         context.commit('setLoading', payload)
+      },
+      setErrorMessage:(context, payload) => {
+        context.commit('setErrorMessage', payload)
       }
     }
   }

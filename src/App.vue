@@ -3,6 +3,7 @@
     <Header />
     <PopupConfirm v-if="popupVisible"/>
     <Loader v-if="loading"/>
+    <Error v-if="errorMessage" :message="errorMessage"/>
     <router-view></router-view>
   </div>
 </template>
@@ -12,6 +13,7 @@
 import { mapActions, mapState } from 'vuex'
 import Header from './components/Header.vue'
 import Loader from './components/Loader.vue'
+import Error from "./components/Error.vue"
 import PopupConfirm from './components/PopupConfirm.vue'
 
 export default {
@@ -20,17 +22,20 @@ export default {
     Header,
     PopupConfirm,
     Loader,
+    Error
   },
   computed: {
     ...mapState([
       'popupVisible', 
       'items',
-      'loading'
+      'loading',
+      'errorMessage'
     ])
   },
   methods: {
     ...mapActions([
       'setIsBackIcon',
+      'setErrorMessage',
     ])
   },
   watch: {
