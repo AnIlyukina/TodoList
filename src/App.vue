@@ -58,7 +58,7 @@ body, * {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 10px;
+  padding: 20px 10px 20px 10px;
   min-width: 320px;
 }
 </style>
