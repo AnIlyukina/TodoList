@@ -1,6 +1,11 @@
 <template>
   <div class="item">
-    <div class="item__title">{{item.title}}</div>
+    <div class="item__title">
+      {{item.title}}
+      <div ref="progress" class="item__progress">
+        <div class="item__progress-info">{{isProgressInfo}}</div>
+      </div>
+    </div>
     <div class="item__block">
       <div class="item__tasks" >
         <div v-for="(t, index) in item.tasks.slice(0, 3)"  :key="index" class="item__task" >
@@ -32,6 +37,19 @@ export default {
       required: true
     }
   },
+  computed: {
+    isTodoComplete() {
+      return this.item.tasks.every(t => t.completed)
+    },
+    isProgressInfo() {
+      return `${this.completedTaskCount}/${this.item.tasks.length}`
+    },
+    completedTaskCount() {
+      return this.item.tasks.reduce((acc, curr) => {
+        return acc + (curr.completed ? 1 : 0)
+      }, 0)
+    }
+  },
   methods: {
     ...mapActions([
       'deleteItem',
@@ -49,7 +67,6 @@ export default {
     },
 
     async delete() {
-      // await deleteTodo(this.item.id, this.setLoading)
       this.deleteItem(this.index)
     },
 
@@ -63,6 +80,22 @@ export default {
       NotComplete,
     }
   },
+  mounted() {
+    let style = ''
+    if (Math.floor(this.item.tasks.length / this.completedTaskCount) === 2) {
+      style = 'linear-gradient(90deg, white 50%, transparent 50%)'
+    } 
+    else if (this.item.tasks.length === this.completedTaskCount) {
+      style = 'none'
+    }
+    else if (this.completedTaskCount > this.item.tasks.length / 2) {
+      style = `linear-gradient(${90 + (this.completedTaskCount / this.item.tasks.length * 100 - 50) * 3.6}deg, transparent 50%, rgb(196, 141, 247) 50%), linear-gradient(90deg, white 50%, transparent 50%)`
+    }
+    else {
+      style = `linear-gradient(${90 + this.completedTaskCount / this.item.tasks.length * 100}deg, transparent 50%, white 50%), linear-gradient(90deg, white 50%, transparent 50%)`
+    }
+    this.$refs.progress.style['background-image'] = style
+  }
 }
 </script>
 
@@ -73,6 +106,10 @@ export default {
   border-radius: 20px;
   display: flex;
   margin-bottom: 15px;  
+}
+
+.item.completed {
+  background-color: green;
 }
 
 .item:last-child {
@@ -104,13 +141,39 @@ export default {
   border-radius: 20px;
   justify-content: center;
   text-align: center;
+  position: relative;
 }
+
+.item__progress {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 50%;
+  background-color: rgb(196, 141, 247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item__progress-info {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgb(242, 215, 250);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .item__task {
   width: 100%;
   display: flex;
   align-items: center;
   padding: 5px 0 5px 5px;
-  border-bottom: 0.5mm ridge rgb(196, 141, 247, 0.8) ;
+  border-bottom: 0.5mm ridge rgb(196, 141, 247, 0.8);
 }
 
 .task__title {
