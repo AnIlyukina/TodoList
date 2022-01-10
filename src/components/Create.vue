@@ -128,15 +128,12 @@ export default {
       }
       this.$router.push('/')
     },
-    cancel() {
-      this.$router.push('/')
-    },
     onBackClick() {
       if (this.modelValid) {
         this.setPopupType({
           title: 'Сохранить изменения?',
           popupFunction: () => this.save(this.item),
-          popupFunctionCancel: () => this.cancel()
+          popupFunctionCancel: () => this.$router.push('/')
         })
         this.setPopupVisible(true)
       }

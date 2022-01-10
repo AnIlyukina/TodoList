@@ -3,7 +3,7 @@
     <img class="header__logo" src='../assets/icons/todoList.png'/>
     <h1>Заметки</h1>
     <div class="header__button">
-      <div v-if="!isBackIcon" class="add" @click="onAddClick"></div>
+      <router-link to='/create' v-if="!isBackIcon" class="add" ></router-link>
     </div>
   </div>
 </template>
@@ -24,10 +24,6 @@ export default {
       'setPopupType',
       'setPopupVisible'
     ]),
-
-    onAddClick() {
-      this.$router.push('/create')
-    }
   }
 }
 </script>

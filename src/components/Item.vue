@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="item__controls">
-        <div class="edit item__control" @click="onEditClick"></div>
+        <router-link tag='div' :to="{ name: 'edit', params: { id: this.index }}" class="edit item__control"></router-link>
         <div class="delete item__control" @click="onDeleteClick"></div>
       </div>
     </div>
@@ -68,10 +68,6 @@ export default {
 
     async delete() {
       this.deleteItem(this.index)
-    },
-
-    onEditClick() {
-      this.$router.push(`/edit/${this.index}`)
     },
   },
   data() {

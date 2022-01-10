@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import TodoList from './components/TodoList.vue'
 import Create from './components/Create.vue'
 
+
 export const router = new VueRouter({
   mode: 'history',
   routes: [
@@ -15,6 +16,7 @@ export const router = new VueRouter({
     },
     {
       path: '/edit/:id',
+      name: 'edit',
       component: Create,
     }
   ],
